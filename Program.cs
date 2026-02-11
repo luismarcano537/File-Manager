@@ -29,6 +29,24 @@ namespace FileManager
         }
         
         static void OpenFile(){}
-        static void EditFile(){}
+
+        static void EditFile()
+        {
+            Console.Clear();
+            Console.WriteLine("===== Edição de arquivos =====");
+            Console.WriteLine("Digite para editar (Pressione ESC para sair): ");
+            Console.WriteLine();
+            string text = "";
+            Console.WriteLine("----------");
+
+            do
+            {
+                text += Console.ReadLine();
+                text += Environment.NewLine;
+            } while (Console.ReadKey().Key != ConsoleKey.Escape);
+
+            Console.Write(text);
+            
+        }
     }
 }
