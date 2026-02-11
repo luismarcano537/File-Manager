@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace FileManager
 {
@@ -46,6 +47,20 @@ namespace FileManager
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
 
             Console.Write(text);
+            
+        }
+
+        static void SaveFile(string text)
+        {
+            Console.Clear();
+            Console.WriteLine("===== Salvar arquivo =====");
+            Console.Write("Digite o caminho do arquivo: ");
+            string path = Console.ReadLine();
+
+            using (var file = new StreamWriter(path))
+            {
+                file.Write(text);
+            }
             
         }
     }
