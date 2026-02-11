@@ -28,14 +28,32 @@ namespace FileManager
                 case 3 : Environment.Exit(0); break;
             }
         }
-        
-        static void OpenFile(){}
+
+        static void OpenFile()
+        {
+            Console.Clear();
+            Console.WriteLine("===== Visualização de arquivos =====");
+            Console.WriteLine("");
+            Console.WriteLine("Digite o caminho do arquivo: ");
+            string path = Console.ReadLine();
+
+            using (var file = new StreamReader(path))
+            {
+                string text = file.ReadToEnd();
+                Console.WriteLine(text);
+            }
+
+            Console.WriteLine("");
+            Console.ReadLine();
+            Menu();
+            
+        }
 
         static void EditFile()
         {
             Console.Clear();
             Console.WriteLine("===== Edição de arquivos =====");
-            Console.WriteLine("Digite para editar (Pressione ESC para sair): ");
+            Console.WriteLine("Digite para editar (Pressione F1 para sair): ");
             Console.WriteLine();
             string text = "";
             Console.WriteLine("----------");
@@ -44,9 +62,9 @@ namespace FileManager
             {
                 text += Console.ReadLine();
                 text += Environment.NewLine;
-            } while (Console.ReadKey().Key != ConsoleKey.Escape);
+            } while (Console.ReadKey().Key != ConsoleKey.F1);
 
-            Console.Write(text);
+            SaveFile(text);
             
         }
 
@@ -61,7 +79,11 @@ namespace FileManager
             {
                 file.Write(text);
             }
-            
+
+            Console.WriteLine($"Salvo {path} com sucesso!");
+            Console.ReadLine();
+            Menu();
+
         }
     }
 }
